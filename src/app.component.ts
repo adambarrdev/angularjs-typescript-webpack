@@ -1,7 +1,9 @@
 export const AppComponent = {
     template: `
-      <div>
-        <h2>Hello {{ $ctrl.name }}</h2>
+    <div class="container-fluid">
+        <h2>{{ $ctrl.name }}</h2>
+        <app-nav></app-nav>
+        <div ui-view></div>
       </div>
     `,
     controller: class AppComponent {
