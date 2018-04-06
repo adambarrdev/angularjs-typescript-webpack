@@ -1,17 +1,16 @@
+import { TransitionService } from "@uirouter/angularjs";
 
 class NavController {
 
     public isCollapsed: boolean = true;
 
-    static $inject: Array<string> = ['$rootScope', '$state'];
-    constructor(private $rootScope: angular.IRootScopeService,
-        public $state: angular.ui.IStateService) {
+    static $inject: Array<string> = ['$state', '$transitions'];
+    constructor(public $state: angular.ui.IStateService, public $transitions: TransitionService) {
 
-        let self = this;
-        this.$rootScope.$on('$stateChangeSuccess',
-            function (event, toState, toParams, fromState, fromParams) {
-                self.isCollapsed = true;
-            });
+        this.$transitions.onSuccess({}, () => {
+            console.log('state change success');
+            this.isCollapsed = true;
+        })
     }
 }
 
@@ -21,7 +20,7 @@ export const NavComponent = {
     template: `
         <nav class="navbar navbar-default">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" ng-click="vm.isCollapsed = !vm.isCollapsed" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -31,7 +30,7 @@ export const NavComponent = {
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div uib-collapse="vm.isCollapsed" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li ng-class="{active:vm.$state.includes('home')}"><a ui-sref="home">Home <span class="sr-only">(current)</span></a></li>
                     <li ng-class="{active:vm.$state.includes('about')}"><a ui-sref="about">About</a></li>

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/adambarrdev/angularjs-typescript-webpack#readme",
   "dependencies": {
+    "@types/angular-ui-bootstrap": "^0.13.46",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.6.9",
     "angular-sanitize": "^1.6.9",
