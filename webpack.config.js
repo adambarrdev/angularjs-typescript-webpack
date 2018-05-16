@@ -12,6 +12,7 @@ module.exports = {
     },
     module: {
         rules: [
+            {test: /\.jpg$/, use: 'url-loader?mimetype=image/jpg'},
             { test: /\.tsx?$/, use: 'ts-loader' }
         ]
     },

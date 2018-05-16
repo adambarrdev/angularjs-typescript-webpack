@@ -1,12 +1,15 @@
+import { Ng1StateDeclaration } from "@uirouter/angularjs";
 
-export const homeState = {
+export const homeState: Ng1StateDeclaration = {
   name: 'home',
   url: '/',
-  template: '<h3>Home</h3>'
+  component: 'appHome'
+  //template: '<h3>Home</h3>'
 };
 
 export const aboutState = {
   name: 'about',
   url: '/about',
-  template: '<h3>About...</h3>'
+  component: 'appAbout'
+  //template: '<h3>About...</h3>'
 };
