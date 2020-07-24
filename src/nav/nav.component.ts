@@ -5,12 +5,12 @@ class NavController {
     public isCollapsed: boolean = true;
 
     static $inject: Array<string> = ['$state', '$transitions'];
-    constructor(public $state: angular.ui.IStateService, public $transitions: TransitionService) {
+    constructor(public $state: angular.ui.IStateService, public $transitions: any) {
 
-        this.$transitions.onSuccess({}, () => {
-            console.log('state change success');
+        this.$transitions.onSuccess({ }, (trans, data) => {
+            //console.log('state change success', trans, data);
             this.isCollapsed = true;
-        })
+        });
     }
 }
 
@@ -34,7 +34,7 @@ export const NavComponent = {
             <div uib-collapse="vm.isCollapsed" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li ng-class="{active:vm.$state.includes('home')}">
-                        <a ui-sref="home">Home <span class="sr-only">(current)</span></a>
+                        <a ui-sref="home.step1">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li ng-class="{active:vm.$state.includes('about')}">
                         <a ui-sref="about">About</a>

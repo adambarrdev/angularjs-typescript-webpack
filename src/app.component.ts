@@ -1,6 +1,6 @@
 export const AppComponent = {
     template: `
-    <div class="container-fluid">
+    <div class="container">
         <h2>{{ $ctrl.name }}</h2>
         <app-nav></app-nav>
         <div ui-view></div>
